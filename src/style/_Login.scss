@@ -1,0 +1,122 @@
+@use "./Mixin";
+
+.login-container {
+  height: 100vh;
+  width: 100vw;
+  color: white;
+  background: #16213e;
+  @include Mixin.flex-center();
+
+  .login-wrapper {
+    height: fit-content;
+    width: 25vw;
+    color: rgba(0, 0, 0, 0.694);
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 8px 24px rgba(55, 54, 54, 0.3), 0 0 10px rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+    .heading {
+      // background-color: aqua;
+      height: 2.5rem;
+      margin-bottom: 2rem;
+      @include Mixin.flex-center();
+      h2 {
+        font-size: 2rem;
+        font-weight: 100;
+        letter-spacing: 1px;
+
+        color: #16213e;
+      }
+    }
+
+    form {
+      .input-box {
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        margin-bottom: 1.5rem;
+
+        .label-error {
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+          position: relative;
+
+          p{
+            font-size: 0.9rem;
+            color: crimson;
+            position: absolute;
+            right: 2px;
+            bottom: -2px;
+          }
+
+          label {
+            font-size: 1rem;
+            color: #404756;
+            margin-bottom: 0.3rem;
+          }
+        }
+
+        input {
+          border-radius: 0.5rem;
+          padding-left: 0.5rem;
+          // font-size: 1rem;
+          border: 1px solid rgba(0, 0, 0, 0.322);
+          height: 2rem;
+          background-color: transparent;
+          outline: none;
+          &:active {
+            border: 1px solid skyblue;
+          }
+        }
+      }
+
+      span {
+        display: inline-block;
+        width: 100%;
+        height: fit-content;
+        margin-top: 0.5rem;
+        @include Mixin.flex-center();
+        button {
+          @include Mixin.button-style();
+          background: #087ea4;
+          width: 70%;
+          height: 2rem;
+          font-size: 1.1rem;
+          letter-spacing: 0.1rem;
+        }
+      }
+      
+    }
+    .link{
+        // font-size: 1.2rem;
+        margin-top:0.5rem;
+        font-weight: 200;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        display: inline-block;
+        width: 100%;
+        cursor:pointer;
+        height: fit-content;
+        @include Mixin.flex-center();
+
+        a{
+            color: rgba(0, 0, 0, 0.473);
+            
+            &:hover{
+              text-decoration: underline;
+            }
+        }
+      }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .login-container {
+    .login-wrapper {
+      width: 85%;
+      padding: 1rem;
+    }
+  }
+}
