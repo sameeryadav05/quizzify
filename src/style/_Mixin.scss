@@ -7,13 +7,13 @@
 
 @mixin button-style()
 {
-    background-color: #087EA4;
+    background: #087ea4;
     color: white;
     border: none;
     border-radius: 0.7rem;
     outline: none;
     transition: all 0.1s ease;
     &:hover{
-        scale: 1.05;
+       cursor: pointer;
     }
 }

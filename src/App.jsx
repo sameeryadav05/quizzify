@@ -1,64 +1,77 @@
-import React, { useEffect } from 'react'
+import React, { lazy, Suspense } from 'react';
 import './Main.scss';
-import { createBrowserRouter, Navigate, Outlet, RouterProvider, useNavigate } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import Home from './pages/Home'
-import Login from './pages/Login'
-import Register from './pages/Register'
-import useAuthStore from './store/AuthStore'
+import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom';
+import useAuthStore from './store/AuthStore';
+import Login from './pages/Login';
+import Loader from './components/Loader';
 
-const PrivateLayout = ()=>{
+// Lazy imports with artificial delay for testing loader visibility (optional)
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+const Navbar = lazy(() => delay(1000).then(() => import('./components/Navbar')));
+const Home = lazy(() => delay(1000).then(() => import('./pages/Home')));
+const Register = lazy(() => delay(1000).then(() => import('./pages/Register')));
+
+// PrivateRoute layout with auth check
+const PrivateLayout = () => {
   const isAuthenticated = useAuthStore(state => state.isAuthenticated);
+
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
-  return(
-    <div className='container'>
+
+  return (
+    <div className="container">
       <Navbar />
       <Outlet />
     </div>
-  )
-}
+  );
+};
 
-const AuthRoute= ()=>{
-  return(
-    <Outlet />
-  )
-}
+// Auth route wrapper
+const AuthRoute = () => {
+  return <Outlet />;
+};
 
 function App() {
-  const isAuthenticated = useAuthStore((state)=>state.isAuthenticated);
   const router = createBrowserRouter([
     {
-      path:'/',
-      element:<PrivateLayout />,
-      children:[
+      path: '/',
+      element: (
+        <Suspense fallback={<Loader />}>
+          <PrivateLayout />
+        </Suspense>
+      ),
+      children: [
         {
-          path:'/',
-          element:<Home />
-        }
-      ]
+          path: '/',
+          element: <Home />, // No extra Suspense here
+        },
+      ],
     },
     {
-      element:<AuthRoute />,
-      children:[
+      element: <AuthRoute />,
+      children: [
         {
-          path:'/login',
-          element:<Login />
+          path: '/login',
+          element: <Login />,
         },
         {
-          path:'/sign-up',
-          element:<Register/>
-        }
-      ]
-    }
-  ])
+          path: '/sign-up',
+          element: (
+            <Suspense fallback={<Loader />}>
+              <Register />
+            </Suspense>
+          ),
+        },
+      ],
+    },
+  ]);
 
   return (
-    <RouterProvider router={router}/>
-  )
+    <Suspense fallback={<Loader />}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 }
 
-
-
-export default App
+export default App;

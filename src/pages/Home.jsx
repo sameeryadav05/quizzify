@@ -1,11 +1,13 @@
-import React from 'react'
-
+import React from "react";
+import useAuthStore from "../store/AuthStore";
 const Home = () => {
-  return (
-    <div>
-      home page
-    </div>
-  )
-}
+  const logout = useAuthStore((state) => state.logout);
 
-export default Home
+  return (
+    <>
+      Home page
+    </>
+  );
+};
+
+export default Home;

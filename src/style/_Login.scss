@@ -9,13 +9,14 @@
 
   .login-wrapper {
     height: fit-content;
-    width: 25vw;
+    width: 23vw;
     color: rgba(0, 0, 0, 0.694);
     background-color: #fff;
     border: 1px solid black;
     border-radius: 1rem;
     padding: 1rem;
-    box-shadow: 0 8px 24px rgba(55, 54, 54, 0.3), 0 0 10px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 24px rgba(55, 54, 54, 0.3),
+      0 0 10px rgba(255, 255, 255, 0.1);
     padding-bottom: 0.5rem;
     .heading {
       // background-color: aqua;
@@ -23,11 +24,11 @@
       margin-bottom: 2rem;
       @include Mixin.flex-center();
       h2 {
-        font-size: 2rem;
-        font-weight: 100;
+        font-size: 1.5rem;
+        // font-weight: 700;
         letter-spacing: 1px;
-
         color: #16213e;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
       }
     }
 
@@ -44,12 +45,12 @@
           flex-direction: row;
           position: relative;
 
-          p{
+          p {
             font-size: 0.9rem;
             color: crimson;
             position: absolute;
             right: 2px;
-            bottom: -2px;
+            // bottom: -2px;
           }
 
           label {
@@ -80,35 +81,42 @@
         margin-top: 0.5rem;
         @include Mixin.flex-center();
         button {
+          @include Mixin.flex-center();
           @include Mixin.button-style();
-          background: #087ea4;
-          width: 70%;
+          width: 99%;
           height: 2rem;
           font-size: 1.1rem;
           letter-spacing: 0.1rem;
-        }
-      }
-      
-    }
-    .link{
-        // font-size: 1.2rem;
-        margin-top:0.5rem;
-        font-weight: 200;
-        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        display: inline-block;
-        width: 100%;
-        cursor:pointer;
-        height: fit-content;
-        @include Mixin.flex-center();
 
-        a{
-            color: rgba(0, 0, 0, 0.473);
-            
-            &:hover{
-              text-decoration: underline;
-            }
+          &:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+          }
         }
       }
+    }
+    .link {
+      // font-size: 1.2rem;
+      margin-top: 0.5rem;
+      font-weight: 200;
+      font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+      display: inline-block;
+      width: 100%;
+      cursor: pointer;
+      height: fit-content;
+      @include Mixin.flex-center();
+      margin-top: 1.3rem;
+      
+
+      a {
+        color: rgba(0, 0, 0, 0.473);
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 }
 

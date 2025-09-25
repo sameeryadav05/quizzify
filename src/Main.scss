@@ -1,4 +1,5 @@
 @use './style/Login';
+@use "./style/Mixin";
 html,body{
     padding: 0;
     margin: 0;
@@ -7,4 +8,21 @@ html,body{
     a{
         text-decoration: none;
     }
+}
+
+
+.graph{
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    width: 80vw;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loader{
+    height: 100vh;
+    width: 100vw;
+    @include Mixin.flex-center();
 }
